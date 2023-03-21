@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
+    private const string setBoolAnimator = "isRuning";
+
     private Rigidbody2D _rigidbody;
 
     private Animator _animator;
@@ -14,7 +16,7 @@ public class Player_Movement : MonoBehaviour
     private float _jumpForce = 1000;
 
     private bool _isGroundet = true;
-
+  
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -41,13 +43,13 @@ public class Player_Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector2.right * _speed * Time.deltaTime);
-            _animator.SetBool("isRuning", true);
+            _animator.SetBool(setBoolAnimator, true);
             _spriteRenderer.flipX = false;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector2.right * -_speed * Time.deltaTime);
-            _animator.SetBool("isRuning", true);
+            _animator.SetBool(setBoolAnimator, true);
             _spriteRenderer.flipX = true;
         }
         else
@@ -72,7 +74,7 @@ public class Player_Movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.GetComponent<Ground>())
         {
             _isGroundet = true;
         }
@@ -80,7 +82,7 @@ public class Player_Movement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.GetComponent<Ground>())
         {
             _isGroundet = false;
         }

@@ -4,48 +4,43 @@ using UnityEngine;
 
 public class Enemy_Patroling : MonoBehaviour
 {
-    public Transform[] Positions;
+    [SerializeField] private Transform[] _positions;
 
-    SpriteRenderer EnemySpriteRenderer;
+    private SpriteRenderer EnemySpriteRenderer;
 
     private int currentPosition = 0;
 
     private float speed = 3;
 
-    
-    void Start()
+    private void Start()
     {
         EnemySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    void Update()
+    private void Update()
     {
         Patroling();
     }
 
-    void Patroling()
+    private void Patroling()
     {
-        Transform targetPosition = Positions[currentPosition];
+        Transform targetPosition = _positions[currentPosition];
+        
 
         if (transform.position == targetPosition.position)
         {
+             
             currentPosition++;
 
-            if (currentPosition == Positions.Length)
+            if (currentPosition == _positions.Length)
             {
                 currentPosition = 0;
             }
-
-            if (transform.position.x > Positions[currentPosition].position.x)
-            {
-                EnemySpriteRenderer.flipX = true;
-            }
-            else
-            {
-                EnemySpriteRenderer.flipX = false;
-            }
+            
+            EnemySpriteRenderer.flipX = transform.position.x > _positions[currentPosition].position.x;
         }
-
+         
         transform.position = Vector2.MoveTowards(transform.position, targetPosition.position, Time.deltaTime * speed);
+         
     }
 }
