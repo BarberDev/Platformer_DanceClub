@@ -5,10 +5,9 @@ using UnityEngine;
 public class CoinGenerator : MonoBehaviour
 {
     public Coin _coin;
-
     public Transform CoinMakePosition;
-
     private float _waitingTime = 1;
+    private float _moveStep = 2;
     private int CoinCount = 9;
 
     private void Start()
@@ -28,7 +27,7 @@ public class CoinGenerator : MonoBehaviour
         for (int i = 0; i < CoinCount; i++)
         {
             Instantiate(_coin, CoinMakePosition.position,Quaternion.identity);
-            CoinMakePosition.Translate(2,0,0);
+            CoinMakePosition.Translate(_moveStep,0,0);
             yield return waitForSeconds;
         }
     } 

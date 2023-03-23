@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Animator))]
 public class Player_Movement : MonoBehaviour
 {
     private const string setBoolAnimator = "isRuning";
-
     private Rigidbody2D _rigidbody;
-
     private Animator _animator;
-
     private SpriteRenderer _spriteRenderer;
-
     private float _speed = 3;
     private float _jumpForce = 1000;
-
     private bool _isGroundet = true;
   
     private void Start()

@@ -7,9 +7,7 @@ public class Enemy_Patroling : MonoBehaviour
     [SerializeField] private Transform[] _positions;
 
     private SpriteRenderer EnemySpriteRenderer;
-
     private int currentPosition = 0;
-
     private float speed = 3;
 
     private void Start()
