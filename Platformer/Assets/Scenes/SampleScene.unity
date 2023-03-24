@@ -2109,7 +2109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coin: {fileID: 4769923574403908927, guid: c73054e79632037499766974f9f697af, type: 3}
-  CoinMakePosition: {fileID: 2026089994}
+  _coinMakePosition: {fileID: 2026089994}
 --- !u!4 &1872668360
 Transform:
   m_ObjectHideFlags: 0
