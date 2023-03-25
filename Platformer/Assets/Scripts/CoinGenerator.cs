@@ -6,6 +6,7 @@ public class CoinGenerator : MonoBehaviour
 {
     [SerializeField] private Coin _coin;
     [SerializeField] private Transform _coinMakePosition;
+
     private float _waitingTime = 1;
     private float _moveStep = 2;
     private int CoinCount = 9;

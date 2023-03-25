@@ -7,12 +7,17 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerMovement : MonoBehaviour
 {
-    private const string _setBoolAnimator = "isRuning";
+    private const string SetBoolAnimator = "isRuning";
+    private const string SetFloatAnimator = "Velocity";
+
     private Rigidbody2D _rigidbody;
+
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+
     private float _speed = 3;
     private float _jumpForce = 1000;
+
     private bool _isGroundet = true;
   
     private void Start()
@@ -41,18 +46,18 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector2.right * _speed * Time.deltaTime);
-            _animator.SetBool(_setBoolAnimator, true);
+            _animator.SetBool(SetBoolAnimator, true);
             _spriteRenderer.flipX = false;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Translate(Vector2.right * -_speed * Time.deltaTime);
-            _animator.SetBool(_setBoolAnimator, true);
+            _animator.SetBool(SetBoolAnimator, true);
             _spriteRenderer.flipX = true;
         }
         else
         {
-            _animator.SetBool(_setBoolAnimator, false);
+            _animator.SetBool(SetBoolAnimator, false);
         }
     }
 
@@ -67,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     private void IsInAir()
     {
         float velocitySpeedY = _rigidbody.velocity.y;
-        _animator.SetFloat("Velocity", velocitySpeedY);
+        _animator.SetFloat(SetFloatAnimator, velocitySpeedY);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
